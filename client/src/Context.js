@@ -4,7 +4,7 @@ import Peer from 'simple-peer';
 
 const SocketContext = createContext();
 
-const socket = io('http://localhost:8000'); // once the server is deployed pass the url of the server here instead of local host
+const socket = io('https://movie-party.onrender.com'); // once the server is deployed pass the url of the server here instead of local host
 
 const ContextProvider = ({ children }) => {
 
@@ -43,7 +43,7 @@ const ContextProvider = ({ children }) => {
 
 
   useEffect(() => {
-    if (myVideo.current) {
+    if (myVideo.current && stream) {
       myVideo.current.srcObject = stream;
     }
   }, [stream]);
@@ -120,6 +120,7 @@ const ContextProvider = ({ children }) => {
     setVideoStreamer(false);
     setPartyStreamer(false);
     connectionRef.current.destroy();
+    // console.log('did closed');
     window.location.reload();
     }catch(e){
       console.log(e);
