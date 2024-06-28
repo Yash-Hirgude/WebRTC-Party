@@ -1,0 +1,139 @@
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  #videoWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+    position: relative; 
+  }
+  
+  .videoPlayer {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    object-fit: contain;
+    width: 100%;
+    height: 50vh;
+  }
+  
+  .ParaColor {
+    color: #555;
+    text-align: center;
+  }
+
+  .myVideoBox.col-md-6.col-lg-6.col-sm-12 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+  
+  @media (min-width: 768px) {
+    #videoWrapper .col-md-6 {
+      flex: 0 0 48%;
+      max-width: 48%;
+      margin: 1%;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    #videoWrapper {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .col-md-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .videoPlayer.user-video {
+      /* position: fixed; */
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+    }
+  
+    .videoPlayer.my-video {
+        /* position: absolute; */
+      position: fixed;
+      bottom: 10%;
+      right: 10%;
+      width: 25vw;
+      height: 20vh;
+      border: 1px solid #000;
+      z-index: 2;
+    }
+  }
+  
+  /* .myVideoBox{
+      width: 20vw;
+      height: 25vh;
+  } */
+
+  .options {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+  }
+  
+  .options form {
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-style-manual {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-style-manual:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .notifications {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .notifications p {
+    margin: 0;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+  } 
+
+  
+
+
+  
