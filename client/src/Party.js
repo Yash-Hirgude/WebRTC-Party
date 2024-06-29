@@ -26,7 +26,7 @@ const Party = () => {
           sampleSize: 16
         },
         video: {
-          frameRate: 60
+          frameRate: {ideal: framerate}
         }
       })
         .then((currentStream) => {
