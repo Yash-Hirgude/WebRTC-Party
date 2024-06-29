@@ -16,8 +16,18 @@ const Party = () => {
     setPartyStreamer(true);
     try {
       await navigator.mediaDevices.getDisplayMedia({
-        video: true,
-        audio: true,
+        audio: {
+          echoCancellation: false,
+          autoGainControl: false,
+          noiseSuppression: false,
+          latency: 0,
+          channelCount: 2,
+          sampleRate: 48000,
+          sampleSize: 16
+        },
+        video: {
+          frameRate: 60
+        }
       })
         .then((currentStream) => {
           setStream(currentStream);
