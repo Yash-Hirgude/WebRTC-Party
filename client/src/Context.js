@@ -5,8 +5,8 @@ import notificationSound from './sound/notificationSound.mp3';
 
 const SocketContext = createContext();
 
-// const socket = io('https://movie-party.onrender.com'); // once the server is deployed pass the url of the server here instead of local host
-const socket = io('http://localhost:8000');
+const socket = io('https://movie-party.onrender.com'); // once the server is deployed pass the url of the server here instead of local host
+// const socket = io('http://localhost:8000');
 
 const ContextProvider = ({ children }) => {
 
