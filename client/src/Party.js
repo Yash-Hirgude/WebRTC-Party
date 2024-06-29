@@ -26,8 +26,11 @@ const Party = () => {
           sampleSize: 16
         },
         video: {
-          frameRate: 30
-        }
+          cursor: "always",
+          frameRate: { ideal: 30, max: 30 },
+          width: { ideal: 1280, max: 1920 },
+          height: { ideal: 720, max: 1080 }
+      }
       })
         .then((currentStream) => {
           setStream(currentStream);
