@@ -38,6 +38,14 @@ io.on('connection',(socket)=>{
     socket.on("answercall",(data)=>{
         io.to(data.to).emit("callAccepted",{signal:data.signal,name:data.receiverName});
     });
+    socket.on('messageSent',(data)=>{
+       
+        io.to(data.to).emit('receivedMessage',{msg:data.data});
+    });
+    socket.on('userLeft',(data)=>{
+       
+        io.to(data.to).emit('userleft',{msg:data.data});
+    });
 
 });
 

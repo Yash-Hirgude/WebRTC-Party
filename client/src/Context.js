@@ -1,10 +1,12 @@
 import React, { createContext, useState, useRef, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
+import notificationSound from './sound/notificationSound.mp3';
 
 const SocketContext = createContext();
 
-const socket = io('https://movie-party.onrender.com'); // once the server is deployed pass the url of the server here instead of local host
+// const socket = io('https://movie-party.onrender.com'); // once the server is deployed pass the url of the server here instead of local host
+const socket = io('http://localhost:8000');
 
 const ContextProvider = ({ children }) => {
 
@@ -22,6 +24,10 @@ const ContextProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [videoStreamer, setVideoStreamer] = useState(false);
   const [partyStreamer, setPartyStreamer] = useState(false);
+  const [userToSendMessage, setUserToSendMessage] = useState();
+  const [messages, setMessages] = useState([]);
+  const [userLeft,setUserLeft] = useState(false);
+  const [isScreenFull, setIsScreenFull] = useState(false);
 
   const myVideo = useRef();
   const userVideo = useRef();
@@ -31,6 +37,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     socket.on('me', (id) => setMe(id));
     socket.on('calluser', ({ signal, from, name: callerName }) => {
+      setUserToSendMessage(from);
       let details = {
         isReceivingCall: true,
         from,
@@ -82,6 +89,7 @@ const ContextProvider = ({ children }) => {
 
 
   const callUser = (id) => {
+    setUserToSendMessage(id);
     const peer = new Peer({ initiator: true, trickle: false, stream });
 
     peer.on('signal', (data) => {
@@ -112,15 +120,33 @@ const ContextProvider = ({ children }) => {
     connectionRef.current = peer;
 
   };
+
+  let handleSend = (msg)=>{
+    
+    socket.emit('messageSent',{to: userToSendMessage,data: msg});
+  }
+  socket.on('receivedMessage',(data)=>{
+    
+    setMessages([...messages, { text: data.msg, user: call.name }]);
+    const audio = new Audio(notificationSound);
+    audio.play();
+
+  });
+  socket.on('userleft',(data)=>{
+    setUserLeft(true);
+  })
  
-  const leaveCall = (id) => {
+  const leaveCall = async (id) => {
+    await socket.emit('userLeft',{to:userToSendMessage,data: 'user left'});
     try{
     setCallEnded(true);
     setStream(null);
+    setUserLeft(false);
     setVideoStreamer(false);
     setPartyStreamer(false);
+    
     connectionRef.current.destroy();
-    // console.log('did closed');
+    console.log('did closed');
     window.location.reload();
     }catch(e){
       console.log(e);
@@ -144,6 +170,12 @@ const ContextProvider = ({ children }) => {
       setVideoStreamer,
       setPartyStreamer,
       setStream,
+      messages,
+      setMessages,
+      handleSend,
+      userLeft,
+      isScreenFull,
+      setIsScreenFull,
     }}
     >
       {children}
