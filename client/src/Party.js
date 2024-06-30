@@ -27,7 +27,7 @@ const Party = () => {
         },
         video: {
           cursor: "always",
-          frameRate: { ideal: 30, max: 30 },
+          frameRate: { ideal: 60, max: 60 },
           width: { ideal: 1280, max: 1920 },
           height: { ideal: 720, max: 1080 }
       }
