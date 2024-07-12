@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Options from './components/Options';
 import Notificaitons from './components/Notifications';
 import ChatBox from './components/ChatBox';
-
+import BIRDS from 'vanta/src/vanta.birds';
 import { useContext } from 'react'
 import { SocketContext } from './Context'
 import PartyPlayer from './components/PartyPlayer';
@@ -10,7 +10,25 @@ import PartyPlayer from './components/PartyPlayer';
 
 const Party = () => {
 
-  const {isScreenFull, callAccepted,setPartyStreamer, myVideo, setStream, userLeft, call } = useContext(SocketContext);
+  useEffect(() => {
+    BIRDS(
+        {
+            el: "#backgroundTag",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            colorMode: "variance",
+            separation: 57.00,
+            backgroundAlpha: 0.00
+        }
+    );
+}, [])
+
+  const {callAccepted,setPartyStreamer, myVideo, setStream, userLeft, call } = useContext(SocketContext);
 
   const getMedia = async () => {
     setPartyStreamer(true);
@@ -57,7 +75,7 @@ const Party = () => {
   }, [userLeft]);
 
   return (
-    <div className='PartyWrapper full-height'>
+    <div id = "backgroundTag" className='PartyWrapper full-height'>
       <PartyPlayer></PartyPlayer>
       <Options>
         <Notificaitons></Notificaitons>

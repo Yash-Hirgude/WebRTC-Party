@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import { SocketContext } from '../Context'
 import fullScreenLogo from '../icons/fullScreen.png'
@@ -46,9 +46,9 @@ const PartyPlayer = () => {
       }, []);
 
     return (
-        <div id='videoWrapper'>
+        <div id='videoWrapper' className="bg-transparent" >
             <p>{name || 'Name'}</p>
-            <video playsInline ref={myVideo} autoPlay className='videoPlayer w-100' />
+            <video playsInline ref={myVideo} autoPlay className='videoPlayer w-100 bg-transparent' />
             <img
                 src={isScreenFull ? exitFullScreenLogo : fullScreenLogo}
                 alt="Fullscreen"

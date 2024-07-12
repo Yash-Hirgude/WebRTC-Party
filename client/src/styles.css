@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
     background-color: rgb(26, 24, 24);
+    font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 .wrapper{
     display: flex;
@@ -93,6 +97,26 @@
     /* border: 2px solid red; */
     width: 100vw;
 }
+
+.input-field-text{
+    color: white;
+    opacity: 1;
+}
+.input-field-text:focus {
+    color: white;
+}
+
+.answer-button{
+    background-color: green;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    /* background-color: lightgray; */
+    /* color: white; */
+    border: none;
+    cursor: pointer;
+}
+
 @media screen and (orientation: landscape) {
     .videoPlayer{
         height: 100vh;

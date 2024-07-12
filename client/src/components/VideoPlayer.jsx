@@ -5,7 +5,7 @@ import { SocketContext } from '../Context'
 const VideoPlayer = ()=>{
     const {name,callAccepted,myVideo,userVideo,callEnded,stream,call} = useContext(SocketContext);
     return (
-        <div id = 'videoWrapper' className="row">
+        <div id = 'videoWrapper' className="row bg-transparent">
             {
                 stream && (
                     
